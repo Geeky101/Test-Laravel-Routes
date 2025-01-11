@@ -39,14 +39,14 @@ Route::redirect('log-in', 'login');
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-Route::group(function (){
+Route::group(['middleware' => 'auth'],function (){
 
     // Tasks inside that Authenticated group:
 
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
-    Route::prefix('app')->group(function (){
+    Route::group(['prefix' => 'app'],function (){
 
         // Tasks inside that /app group:
 
@@ -69,7 +69,7 @@ Route::group(function (){
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-    Route::prefix('admin')->group(function (){
+    Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function (){
 
         // Tasks inside that /admin group:
 
@@ -85,10 +85,10 @@ Route::group(function (){
 
 
     // End of the /admin Route Group
-    })->middleware('is_admin');
+    });
 
 // End of the main Authenticated Route Group
-})->middleware('auth');
+});
 
 // One more task is in routes/api.php
 
